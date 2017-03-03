@@ -1,12 +1,12 @@
 // TCP Server
-#include "socket_server.h"
+#include "socket_client.h"
 
 
 int main( int argc, char** argv )
 {
-    sockConn::server TcpServer(3000);
+    sockConn::client TcpClient(3000);
 
-    TcpServer.run();
+    TcpClient.run();
 	return 0;
 }
 
