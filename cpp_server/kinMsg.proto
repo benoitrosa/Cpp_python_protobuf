@@ -1,0 +1,21 @@
+package kinMsg;
+
+message request {
+	required bool endconnection = 1;
+}
+
+message response {
+	required bool endconnection = 1;
+	required coordinates shape = 2;
+}
+
+message coordinates {
+	required uint32 numpoints = 1;
+	repeated position3D P = 2;
+}
+
+message position3D {
+	required double x = 1;
+	required double y = 2;
+	required double z = 3;
+}
