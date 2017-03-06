@@ -178,7 +178,7 @@ bool server::readBody(int csock,google::protobuf::uint32 siz)
 
 
     //Read the entire buffer including the hdr
-    if((bytecount = recv(csock, (void *)buffer_full, siz+4, MSG_DONTWAIT))== -1)
+    if((bytecount = recv(csock, (void *)buffer_full, siz+4, 0))== -1)
         ::std::cerr << "Error receiving data " <<  errno  << ::std::endl;
 
     strncpy(buffer, buffer_full+4, siz);
@@ -217,18 +217,24 @@ bool server::readBody(int csock)
 
     // First, read 4-characters header for extracting data size
     char buffer_hdr[5];
-    if((bytecount = recv(csock, buffer_hdr, 4, MSG_WAITALL))== -1)
+    if((bytecount = recv(csock, buffer_hdr, 4, 0))== -1)
         ::std::cerr << "Error receiving data "<< ::std::endl;
+
+    ::std::cout << bytecount << ::std::endl;
 
     // place a null-terminating character to avoid weird atoi behavior
     buffer_hdr[4] = '\0';
     int i = atoi(buffer_hdr);
     siz = i;
 
+    ::std::cout << siz << ::std::endl;
+
     // Second, read the data
     char buffer [siz];
-    if((bytecount = recv(csock, (void *)buffer, siz, MSG_WAITALL))== -1)
+    if((bytecount = recv(csock, (void *)buffer, siz, 0))== -1)
         ::std::cerr << "Error receiving data " <<  errno  << ::std::endl;
+
+    ::std::cout << bytecount << ::std::endl;
 
     //Assign ArrayInputStream with enough memory
     google::protobuf::io::ArrayInputStream ais(buffer,siz);

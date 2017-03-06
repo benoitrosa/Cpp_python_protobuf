@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8)
 
 ## generate protobuf (the default cmake command does not work well with subdirectories) ##
-set(OUT_PYTHON ${CMAKE_CURRENT_SOURCE_DIR}/../python_client/)
+set(OUT_PYTHON ${CMAKE_CURRENT_SOURCE_DIR}/../python_scripts/)
 set(OUT_CPP ${CMAKE_CURRENT_BINARY_DIR}/)
 
 get_filename_component(FIL_WE ${PROTO_FILE} NAME_WE)
