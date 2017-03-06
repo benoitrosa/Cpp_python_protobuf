@@ -37,15 +37,15 @@ private:
         int m_status;
         struct addrinfo m_hints;
         struct addrinfo * m_res;
-        int m_listner;
+        int m_socket;
 
         bool setupConnection();
-        bool waitForConnection(int& connectionID);
 
+        bool sendRequest();
         google::protobuf::uint32 readHdr(char *buf);
-        bool readBody(int csock);
-        bool readBody(int csock, google::protobuf::uint32 size);
-        bool sendResponse(int csock);
+        bool readResponse();
+        bool readResponse(google::protobuf::uint32 siz);
+
 
         kinMsg::request input_msg;
         kinMsg::response output_msg;
