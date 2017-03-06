@@ -1,5 +1,20 @@
 #!/usr/bin/env python
 
+'''
+This is a small TCP client that handles a protobuf communication example. 
+
+The client will try to establish a connection with a TCP server on localhost:3000
+
+When a connection is established, the client will: 
+
+	- Send a request to the server
+	- Wait for a reply with a protobuf message (dummy XYZ positions of an object)
+	- Print x,y,and z (formatted as a numpy array) in the standard output
+
+The client will loop until either CTRL+C is pressed (in which case it will cleanly close the socket and exit), or until the client request includes an endconnection=True message
+'''
+
+
 import socket
 import struct
 import signal
